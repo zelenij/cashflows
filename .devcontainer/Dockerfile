@@ -45,6 +45,7 @@ RUN pip3 --disable-pip-version-check --no-cache-dir install \
 
 RUN pip3 --disable-pip-version-check --no-cache-dir install \
     numpy \
+    numpy-financial \
     matplotlib \
     graphviz \
     ipykernel \
