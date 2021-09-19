@@ -60,6 +60,7 @@ Functions in this module
 """
 
 import numpy
+import numpy_financial as npf
 from cashflows.common import _vars2list
 
 
@@ -176,15 +177,15 @@ def tvmm(pval=None, fval=None, pmt=None, nrate=None, nper=None, due=0, pyr=1, no
     nrate = numpy.array(nrate)
 
     if pval is None:
-        result = numpy.pv(rate=nrate/100/pyr, nper=nper, fv=fval, pmt=pmt, when=due)
+        result = npf.pv(rate=nrate/100/pyr, nper=nper, fv=fval, pmt=pmt, when=due)
     elif fval is None:
-        result = numpy.fv(rate=nrate/100/pyr, nper=nper, pv=pval, pmt=pmt, when=due)
+        result = npf.fv(rate=nrate/100/pyr, nper=nper, pv=pval, pmt=pmt, when=due)
     elif nper is None:
-        result = numpy.nper(rate=nrate/100/pyr, pv=pval, fv=fval, pmt=pmt, when=due)
+        result = npf.nper(rate=nrate/100/pyr, pv=pval, fv=fval, pmt=pmt, when=due)
     elif pmt is None:
-        result = numpy.pmt(rate=nrate/100/pyr, nper=nper, pv=pval, fv=fval, when=due)
+        result = npf.pmt(rate=nrate/100/pyr, nper=nper, pv=pval, fv=fval, when=due)
     else:
-        result = numpy.rate(pv=pval, nper=nper, fv=fval, pmt=pmt, when=due) * 100 * pyr
+        result = npf.rate(pv=pval, nper=nper, fv=fval, pmt=pmt, when=due) * 100 * pyr
 
     if noprint is True:
         if isinstance(result, numpy.ndarray):
